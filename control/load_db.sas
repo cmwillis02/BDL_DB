@@ -3,7 +3,7 @@
 proc sql;
 create table work.table_list as
 select * from sashelp.vmember
-where libname = 'STAGE' and memname like ("STG%");
+where libname = 'STAGE' and memname like ("STG_%");
 quit;
 
 data _null_;
