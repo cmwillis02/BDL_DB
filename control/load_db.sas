@@ -1,9 +1,10 @@
 /* Load DB Tables */
 
+
 proc sql;
 create table work.table_list as
 select * from sashelp.vmember
-where libname = 'STAGE' and memname like ("STG_%");
+where libname = 'STAGE' and memname like ("STG_AWD%");
 quit;
 
 data _null_;

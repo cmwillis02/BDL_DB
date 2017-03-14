@@ -5,6 +5,7 @@ options mprint;
 
 libname bdl postgres database=BDLCORE server="bdlpg.cquxuyvkuxqs.us-east-1.rds.amazonaws.com" port=5432 user=bdladmin  password="bdladmin123" schema="BDLCORE"; 
 libname bdlref postgres database=BDLCORE server="bdlpg.cquxuyvkuxqs.us-east-1.rds.amazonaws.com" port=5432 user=bdladmin  password="bdladmin123" schema="REFERENCE";
+libname exp postgres database=BDLCORE server="bdlpg.cquxuyvkuxqs.us-east-1.rds.amazonaws.com" port=5432 user=bdladmin  password="bdladmin123" schema="TB_EXPORT";
 Libname stage "/home/cwillis/BDL/data/stage";
 
 /*******************************************************/

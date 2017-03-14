@@ -2,7 +2,6 @@
 
 	%do i=&start %to &stop %by 1;
 
-
 		proc import datafile="/home/cwillis/BDL/data/import_data/pfr/receiving_&i..txt" out=work.import dbms=csv replace;
 		delimiter=",";
 		getnames=yes;
@@ -19,12 +18,14 @@
 				ifc(find(','n,'+') > 0,'Y','') as all_pro,
 				ifc(find(','n,'*') > 0,'Y','') as pro_bowl,
 				upcase(ifc(pos contains '/',scan(pos,1,'/'),pos)) as position,
-				g,
-				gs,
+				age,
+				tm as team,
+				g as games,
+				gs as games_started,
 				tgt as targets,
-				rec,
+				rec as receptions,
 				'ctch%'n as catch_pct,
-				yds,
+				yds as yards,
 				'Y/R'n as yards_rec,
 				td,
 				lng as long,
