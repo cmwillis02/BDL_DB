@@ -5,9 +5,10 @@ PROC IMPORT DATAFILE="/home/cwillis/BDL/data/reference/Franchise_tag_ref.xlsx"
 	GETNAMES=YES;
 RUN;
 
-
-
 proc sql;
+
+drop table bdlref.franchise_tag;
+
 create table bdlref.franchise_tag as
 select *
 from work.stage;

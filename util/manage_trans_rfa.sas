@@ -39,5 +39,15 @@ select	t1.player_id,
 		ifc(t1.owner_id = input(t1.winner_id,2.),'Y','N') as match
 from work.stage t1
 left join stage.stg_dim_players t2 on (t2.player_id = t1.player_id)
-left join bdlref.franchise_tag t3 on (t3.year = t1.year and t3.player_id = t1.player_id);
+left join bdlref.franchise_tag t3 on (t3.year = t1.year and t3.player_id = t1.player_id)
+order by year;
+quit;
+
+proc sql;
+
+drop table bdl.trans_rfa;
+
+create table bdl.trans_rfa as
+select *
+from work.stage_final;
 quit;

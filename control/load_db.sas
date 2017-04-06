@@ -4,7 +4,7 @@
 proc sql;
 create table work.table_list as
 select * from sashelp.vmember
-where libname = 'STAGE' and memname like ("STG_AWD%");
+where libname = 'STAGE' and memname like ("STG_HIST_MATCHUP_BRIDGE%");
 quit;
 
 data _null_;

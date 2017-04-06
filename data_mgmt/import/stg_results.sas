@@ -1,20 +1,13 @@
-%let year = 2016;
-proc sql;
-	delete from store.hist_players
-	where year = "&year";
-quit;
-proc sql;
-	delete from store.hist_matchup
-	where year = "&year";
-quit;
+/*************THIS CODE HAS NOT BEEN UPDATED FOR CURRENT SYSTEM ******************/
 
+/**** INCLUDED AS PART OF RESULTS REFRESH UPDATE  ******/
 
-%m_import_results(&year,&year);
-%let year = 2016;
+%let year = 2015;
+%m_import_results(&year,2016);
 proc sql;
 create table work.Hist_Matchup_1 as
 Select distinct	t1.weeklyresults_ordinal as week,
-		t1.year,
+		input(t1.year,4.) as year,
 		IFC(t1.matchup_regularseason = 1,'Y','N') as Regular_season,
 		t2.franchise_id as Home_id,
 		t2.franchise_score as Home_score,
@@ -30,12 +23,12 @@ Select distinct	t1.weeklyresults_ordinal as week,
 from work.matchup_&year t1
 left join work.franchise_&year t2 on (t2.matchup_ordinal = t1.Matchup_ordinal AND t2.year = t1.year AND t2.franchise_ishome = 1)
 left join work.franchise_&year t3 on (t3.matchup_ordinal = t1.Matchup_ordinal AND t3.year = t1.year AND t3.franchise_ishome = 0)
-left join ref.playoff_matchups t4 on (put(t4.year,4.) = t1.year and t4.week=t1.weeklyresults_ordinal and t4.home_id = t2.franchise_id and t4.away_id = t3.franchise_id)
+left join bdlref.playoff_reference t4 on (put(t4.year,4.) = t1.year and t4.week=t1.weeklyresults_ordinal and t4.home_id = t2.franchise_id and t4.away_id = t3.franchise_id)
 order by year, week;
 quit;
 proc sql;
 create table work.hist_players_1 as
-select Distinct	t1.year,
+select Distinct	input(t1.year,4.) as year,
 		t3.weeklyresults_ordinal as week,
 		t2.franchise_id,
 		t1.player_id,
